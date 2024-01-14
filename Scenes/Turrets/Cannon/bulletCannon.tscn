@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dagocpdrvokm"]
+
+[ext_resource type="Script" path="res://Scenes/Turrets/Cannon/bulletCannon.gd" id="1_dod0g"]
+[ext_resource type="Texture2D" uid="uid://db5kl7q04gvwb" path="res://Assets/Turrets/Cannon/Bullet_Cannon.png" id="2_0sw31"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rw7oq"]
+radius = 2.0
+height = 8.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_dod0g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_0sw31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rw7oq")

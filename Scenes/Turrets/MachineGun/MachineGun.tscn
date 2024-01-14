@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://rh1tak48mlor"]
+
+[ext_resource type="Script" path="res://Scenes/Turrets/MachineGun/MachineGun.gd" id="1_smby3"]
+[ext_resource type="Texture2D" uid="uid://d1akr1fdqo6ck" path="res://Assets/Turrets/MachineGun/MG.png" id="2_o2dyi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kuojk"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oosa2"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yooqw"]
+radius = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bk8k1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0, 0.027451, 0.745098)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+corner_detail = 20
+anti_aliasing_size = 0.1
+
+[sub_resource type="Theme" id="Theme_fif17"]
+Panel/styles/panel = SubResource("StyleBoxFlat_bk8k1")
+
+[node name="MachineGun" type="CharacterBody2D" groups=["Turret"]]
+script = ExtResource("1_smby3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kuojk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_o2dyi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Range" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oosa2")
+
+[node name="Ammo_pos" type="Node2D" parent="."]
+position = Vector2(12, 2)
+
+[node name="Size" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Size"]
+shape = SubResource("CircleShape2D_yooqw")
+debug_color = Color(0, 0.647059, 0.231373, 0.419608)
+
+[node name="CanPlaceUI" type="Panel" parent="."]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+theme = SubResource("Theme_fif17")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

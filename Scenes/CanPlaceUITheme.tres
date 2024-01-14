@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bi7lsawuece2g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnkmp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0, 0, 0.745098)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+corner_detail = 20
+anti_aliasing_size = 0.1
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_xnkmp")

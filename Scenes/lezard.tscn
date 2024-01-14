@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwhq3utipwctd"]
+
+[ext_resource type="Script" path="res://Scenes/lezard.gd" id="1_1yu2r"]
+[ext_resource type="Texture2D" uid="uid://l3vhljw5fj7f" path="res://Assets/hyptosis_sprites-and-tiles-for-you.png" id="1_vavm1"]
+[ext_resource type="Theme" uid="uid://b2bh74s76a7nd" path="res://Assets/Themes/health_bar.tres" id="3_5rcis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjm80"]
+size = Vector2(25, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6rid"]
+atlas = ExtResource("1_vavm1")
+region = Rect2(152, 561, 38, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ijks"]
+atlas = ExtResource("1_vavm1")
+region = Rect2(190, 561, 38, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ysc5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6rid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ijks")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Lezard" type="PathFollow2D"]
+v_offset = -7.0
+rotates = false
+loop = false
+script = ExtResource("1_1yu2r")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_qjm80")
+one_way_collision = true
+debug_color = Color(0.988235, 0, 0, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-3, 3)
+sprite_frames = SubResource("SpriteFrames_ysc5o")
+animation = &"run"
+autoplay = "run"
+
+[node name="HealthBar" type="ProgressBar" parent="CharacterBody2D"]
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 8.0
+offset_bottom = -15.0
+theme = ExtResource("3_5rcis")
+step = 1.0
+show_percentage = false

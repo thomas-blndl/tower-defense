@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://detp5xagcqnps"]
+
+[ext_resource type="Script" path="res://Scenes/Turrets/MissileLauncher/missile.gd" id="1_5xjr8"]
+[ext_resource type="Texture2D" uid="uid://bo3fvjxwsbnlo" path="res://Assets/Turrets/Missile/Missile.png" id="2_2kuqx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rw7oq"]
+radius = 3.0
+height = 10.0
+
+[node name="Missile" type="Area2D"]
+script = ExtResource("1_5xjr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2kuqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rw7oq")

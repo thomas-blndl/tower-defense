@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://by0mfmrumrli2"]
+
+[ext_resource type="Texture2D" uid="uid://ciuxkiuq3i53k" path="res://Assets/Turrets/Cannon/Cannon.png" id="1_6dhu1"]
+[ext_resource type="Script" path="res://Scenes/Turrets/Cannon/cannon.gd" id="1_djb2m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5m12f"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oosa2"]
+radius = 75.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o5r2u"]
+radius = 15.0333
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh4dt"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0, 0.027451, 0.745098)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+corner_detail = 20
+anti_aliasing_size = 0.1
+
+[sub_resource type="Theme" id="Theme_a26qn"]
+Panel/styles/panel = SubResource("StyleBoxFlat_hh4dt")
+
+[node name="Cannon" type="CharacterBody2D" groups=["Turret"]]
+script = ExtResource("1_djb2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5m12f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_6dhu1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Range" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oosa2")
+
+[node name="Ammo_pos" type="Node2D" parent="."]
+position = Vector2(13, 0)
+
+[node name="Size" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Size"]
+shape = SubResource("CircleShape2D_o5r2u")
+
+[node name="CanPlaceUI" type="Panel" parent="."]
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+theme = SubResource("Theme_a26qn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
